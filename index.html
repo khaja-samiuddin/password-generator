@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-blue-900 flex items-center justify-center min-h-screen">
+
+  <div class="bg-blue-800 p-8 rounded-lg shadow-lg text-center max-w-md w-full">
+    <h1 class="text-3xl font-semibold text-white mb-2">Generate a</h1>
+    <h2 class="text-3xl font-semibold text-green-400 mb-6">Random Password</h2>
+
+    <!-- Password Display Box -->
+    <div class="flex items-center justify-between bg-white rounded-md p-4 shadow-inner mb-6">
+      <input type="text" id="password" readonly value="Jy3&@jHD~hnf" 
+             class="w-full text-gray-700 font-mono text-lg outline-none" />
+      <button onclick="copyToClipboard()" class="text-green-500 ml-4 hover:text-green-600">
+        <!-- Clipboard Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16h8m-4-4h4m0 0a2 2 0 110-4h-4m0 0V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h8z"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Generate Password Button -->
+    <button onclick="generatePassword()" 
+            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md shadow-lg flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+      </svg>
+      Generate Password
+    </button>
+  </div>
+
+  <script>
+    function copyToClipboard () {
+        const passwordField = document.getElementById('password');
+        passwordField.select();
+        document.execCommand('copy');
+        alert('Password copied to clipboard!');
+    }
+    
+    function generatePassword () {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=';
+        let password = '';
+    
+        for (let i = 0; i < 12; i++) {
+            password += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+    
+        document.getElementById('password').value = password;
+    }
+  </script>
+
+</body>
+</html>
